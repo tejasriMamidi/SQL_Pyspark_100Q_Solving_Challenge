@@ -1,2 +1,2 @@
-# SQL_INTERMEDIATE
-Solving the intermediate question from Leetcode and Stratastrach
+# SQL_challenge
+Solving the daily challenge sql question from Leetcode and Stratastrach
