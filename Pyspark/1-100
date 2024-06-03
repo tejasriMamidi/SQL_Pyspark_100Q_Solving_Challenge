@@ -1,0 +1,30 @@
+1/100
+1.Find the number of rows for each review score earned by 'Hotel Arena'. Output the hotel name (which should be 'Hotel Arena'), 
+review score along with the corresponding number of rows with that score for the specified hotel.
+Links:
+https://platform.stratascratch.com/coding/10166-reviews-of-hotel-arena?code_type=6
+Solution:
+step1:
+filter the hotel_name where are 'Hotel Arena' 
+code: 
+hotel_reviews.filter("hotel_name=='Hotel Arena'")
+
+step2: 
+group the reviewer_score along with hotel_name by using Group By 
+hotel_reviews.filter("hotel_name=='Hotel Arena'").groupBy("reviewer_score","hotel_name").
+
+step 3:
+At last count total_number of reviews to get the count of the reviewer
+and using agg function to display.
+
+Final_solution.
+==============
+# Import your libraries
+import pyspark.sql.functions as f
+
+# Start writing code
+hotel_reviews=hotel_reviews.filter("hotel_name=='Hotel Arena'").groupBy("reviewer_score","hotel_name").\
+                           agg( f.count("total_number_of_reviews").alias("n_reviews"))
+
+# To validate your solution, convert your final pySpark df to a pandas df
+hotel_reviews.toPandas()
