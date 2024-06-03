@@ -1,0 +1,19 @@
+Count the number of movies that Abigail Breslin nominated for oscar
+---------------------------------------------------------------------
+Question 2:
+Count the number of movies that Abigail Breslin was nominated for an oscar.
+
+link:https://platform.stratascratch.com/coding/10128-count-the-number-of-movies-that-abigail-breslin-nominated-for-oscar?code_type=3
+
+Solution:
+step 1:
+need to find the nomiee who is Abigail Breslin
+query:
+where nominee ='Abigail Breslin';
+
+step 2:
+using aggregate function count to count the number of the time he nominated.
+
+final_query:
+select count(*) as n_movies_by_abi from oscar_nominees
+where nominee ='Abigail Breslin';
