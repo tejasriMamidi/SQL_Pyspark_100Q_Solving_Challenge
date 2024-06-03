@@ -1,2 +1,2 @@
-# SQL_challenge
-Solving the daily challenge sql question from Leetcode and Stratastrach
+# SQL_Pyspark_challenge_100days
+Solving the daily challenge sql And pyspark question from Leetcode and Stratastrach
