@@ -1,0 +1,25 @@
+Reviews of Hotel Arena
+-----------------------------
+QUESTION 1:Find the number of rows for each review score earned by 'Hotel Arena'. Output the hotel name (which should be 'Hotel Arena'),
+review score along with the corresponding number of rows with that score for the specified hotel.
+
+link:https://platform.stratascratch.com/coding/10166-reviews-of-hotel-arena?code_type=3
+
+Solution:
+
+step1:
+Filter the hotel_name to get only Hotel Arena
+
+code:
+select * 
+from hotel_reviews
+where hotel_name like '%Hotel Arena%'
+step 2:
+find the all the review_score and give the reviewer Counts who provide them along with hotel name
+
+Query:
+
+select hotel_name,reviewer_score,count(*) 
+from hotel_reviews
+where hotel_name like '%Hotel Arena%'
+group by 1,2;
