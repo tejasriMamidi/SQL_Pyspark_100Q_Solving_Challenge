@@ -1,0 +1,39 @@
+Q3)Table: Tree
+
++-------------+------+
+| Column Name | Type |
++-------------+------+
+| id          | int  |
+| p_id        | int  |
++-------------+------+
+id is the column with unique values for this table.
+Each row of this table contains information about the id of a node and the id of its parent node in a tree.
+The given structure is always a valid tree.
+ 
+
+Each node in the tree can be one of three types:
+
+"Leaf": if the node is a leaf node.
+"Root": if the node is the root of the tree.
+"Inner": If the node is neither a leaf node nor a root node.
+Write a solution to report the type of each node in the tree.
+
+Return the result table in any order.
+
+The result format is in the following example.
+
+Link:https://leetcode.com/problems/tree-node/description/
+
+Solution:
+Step 1: Based on parent id is null Assign it as 'Root'
+Step 2: If id is in parent id is not null and is parent to other id mean that id is present in p_id.
+Step 3: If id is having parent id and not have any child node then assign it as "leaf node'
+Step 4: Group them based on id.
+----------------------------------------------------------------------------------
+# Write your MySQL query statement below
+select id ,case when p_id is null then 'Root' 
+                when p_id is not null and id in (select p_id from  Tree) 
+                then 'Inner'
+                else 'Leaf' end type
+from Tree
+group by id
