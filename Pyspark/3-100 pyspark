@@ -1,0 +1,26 @@
+Q3) 
+Find all posts which were reacted to with a heart. For such posts output all columns from facebook_posts table.
+Link: 
+https://platform.stratascratch.com/coding/10087-find-all-posts-which-were-reacted-to-with-a-heart?code_type=6
+
+Solution:
+Step 1:
+Join the 2 tables based on post_id
+ Step 2:
+ Filter the post who have the reaction heart
+ Step 3:
+ Use Distinct to get the unique Post.
+
+Code: 
+# Import your libraries
+import pyspark.sql.functions as f
+
+# Start writing code
+facebook=facebook_reactions\
+          .join(facebook_posts,facebook_posts.post_id==facebook_reactions.post_id)
+          .filter(facebook_reactions.reaction=='heart')
+          .select(facebook_posts.post_id,facebook_posts.poster,facebook_posts.post_text,facebook_posts.post_keywords,facebook_posts.post_date).distinct()
+
+
+# To validate your solution, convert your final pySpark df to a pandas df
+facebook.toPandas()
