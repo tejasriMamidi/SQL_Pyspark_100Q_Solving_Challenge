@@ -1,0 +1,38 @@
+Q4)
+Lyft Driver Wages
+link:
+https://platform.stratascratch.com/coding/10003-lyft-driver-wages?code_type=6
+
+Discussion:
+==========
+I Just  need to find the driver whose salaries are not between 30001 and 70001 
+step 1: use the filter function to check the condition 
+ like where yearly_salary <=30,000 and greater 70k
+step 2: Assign the output dataframe to new variable.
+step3: Convert it to pandas so that it will satisfy the all the testcases.
+
+
+
+Solution 1:
+========
+
+import pyspark.sql.functions as f
+
+# Start writing code
+lyft_drivers=lyft_drivers.filter( (f.col('yearly_salary')<=30000) |  (f.col("yearly_salary")>=70000))
+
+# To validate your solution, convert your final pySpark df to a pandas df
+lyft_drivers.toPandas()
+
+Solution 2:
+========
+
+# Import your libraries
+import pyspark
+from pyspark.sql.functions import *
+
+# Start writing code
+df = lyft_drivers
+
+df.filter(df.yearly_salary.between(30001,70001)== False).toPandas()
+
