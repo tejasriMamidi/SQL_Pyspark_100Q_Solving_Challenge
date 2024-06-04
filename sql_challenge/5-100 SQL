@@ -1,0 +1,23 @@
+Q5)Find all posts which were reacted to with a heart
+Links:
+https://platform.stratascratch.com/coding/10087-find-all-posts-which-were-reacted-to-with-a-heart?code_type=3
+
+Discussion:
+step 1:
+join the 2 tables based on the post_id 
+
+step 2:
+Filter the post based on reaction who got  'heart'
+
+Step 3:
+add distinct to fetch the unique post from the table.
+
+
+
+Solution:
+
+select distinct fbp.* from facebook_reactions fbr
+join 
+facebook_posts fbp
+on fbr.post_id=fbp.post_id
+where fbr.reaction='heart';
