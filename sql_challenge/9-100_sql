@@ -1,0 +1,15 @@
+9)Compare each employee's salary with the average salary of the corresponding department.
+Output the department, first name, and salary of employees along with the average salary of that department.
+
+Platform: StrataScratch
+Link:https://platform.stratascratch.com/coding/9917-average-salaries?code_type=3
+
+
+
+Solution:
+
+step:Using avg windows function solution  to get the avg salary for every department.
+
+select department ,first_name,salary, avg(salary) over(partition by department)
+from employee;
+
