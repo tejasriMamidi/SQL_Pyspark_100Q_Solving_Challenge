@@ -1,0 +1,23 @@
+Q7)Compare each employee's salary with the average salary of the corresponding department.
+Output the department, first name, and salary of employees along with the average salary of that department.
+
+link:
+https://platform.stratascratch.com/coding/9917-average-salaries?code_type=6
+
+discussion:
+
+step 1: apply window aggregation avg() function to fetch the average salary for each department 
+step 2:create the windowspec 
+step 3: import the function from the spark.function module
+step4: Select only the column which need to be displayed.
+
+Solution:
+
+import pyspark 
+from pyspark.sql.window import Window
+from pyspark.sql.functions import avg,col
+windowSpec = Window.partitionBy("department")
+emp_df=employee.withColumn('avg_salary',avg(col("salary")).over(windowSpec)).select("department","first_name","salary","avg_salary")
+
+# To validate your solution, convert your final pySpark df to a pandas df
+emp_df.toPandas()
