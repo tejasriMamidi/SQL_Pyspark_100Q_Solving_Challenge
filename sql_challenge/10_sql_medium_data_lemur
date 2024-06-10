@@ -1,0 +1,22 @@
+Q110) 
+This is the same question as problem #11 in the SQL Chapter of Ace the Data Science Interview!
+
+Assume you are given the table below on Uber transactions made by users. 
+Write a query to obtain the third transaction of every user. Output the user id, spend and transaction date.
+
+Link:
+https://datalemur.com/questions/sql-third-transaction
+
+Discussion:
+step:
+1.add row_number to identify the unique row in partition as rnk.
+2. added as the cte 
+3.query the table where the row_number is 3 , it will return the 3 rd transaction of the table.
+
+Solution:
+
+with user_rank as (SELECT user_id, spend, transaction_date, 
+row_number() over(partition by user_id order by transaction_date) rnk
+FROM transactions)
+
+select user_id, spend ,transaction_date from user_rank where rnk=3
