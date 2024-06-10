@@ -1,0 +1,28 @@
+Q13)You work as a data analyst for a FAANG company that tracks employee salaries over time. The company wants to understand how 
+the average salary in each department compares to the company's overall average salary each month.
+
+Write a query to compare the average salary of employees in each department to the company's average salary for March 2024. 
+Return the comparison result as 'higher', 'lower', or 'same' for each department. Display the department ID, payment month (in MM-YYYY format), 
+and the comparison result.
+
+Solution:
+with tgt as(
+SELECT distinct emp.department_id
+,  payment_date,
+round(avg(amount) over(PARTITION BY department_id),2) as dept_avg,
+round(avg(amount) over(),2) as avg_total
+FROM employee emp
+join salary s
+on emp.employee_id=s.employee_id
+where
+extract(year from payment_date)='2024' 
+and extract(month from payment_date)='03')
+
+select department_id, 
+concat('0',
+date_part('month', payment_date),'-',
+date_part('year', payment_date))as payment_date,
+case when dept_Avg> avg_total then 'higher'
+when dept_Avg<avg_total then 'lower'
+else 'same' end comparsion
+from tgt
