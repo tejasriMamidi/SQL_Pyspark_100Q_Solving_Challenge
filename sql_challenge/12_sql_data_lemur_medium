@@ -1,0 +1,44 @@
+Q12)This is the same question as problem #25 in the SQL Chapter of Ace the Data Science Interview!
+
+Assume you're given tables with information on Snapchat users, including their ages and time spent sending and opening snaps.
+
+Write a query to obtain a breakdown of the time spent sending vs. opening snaps as a percentage of total time spent on these activities grouped by age group. Round the percentage to 2 decimal places in the output.
+
+Notes:
+
+Calculate the following percentages:
+time spent sending / (Time spent sending + Time spent opening)
+Time spent opening / (Time spent sending + Time spent opening)
+To avoid integer division in percentages, multiply by 100.0 and not 100.
+Effective April 15th, 2023, the solution has been updated and optimised.
+link:
+https://datalemur.com/questions/time-spent-snaps
+-----------------------------------------------------------------
+Discussion:
+step1: join the tables based on the common column id
+step2: fetch the age_bucket along with the activity by using the case statement.
+step3: apply the formuale to by aggregating the column with age bucker.
+-------------------------------------------------------------------------------
+solution:
+
+select age_bucket,
+round((sum(send_activity)/sum(open_activity+send_activity)) * 100.0,2) as send_perc ,
+round((sum(open_activity)/sum(open_activity+send_activity))* 100.0,2) as open_perc
+from (
+
+SELECT 
+abd.age_bucket ,
+case
+when activity_type='open'
+then time_spent
+else 0
+end as open_activity,
+case 
+when activity_type='send'
+then time_spent
+else 0 end 
+as send_activity
+FROM activities u
+join age_breakdown abd
+on u.user_id=abd.user_id) tgt
+group by 1;
