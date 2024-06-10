@@ -1,0 +1,21 @@
+Q4)
+Imagine you're an HR analyst at a tech company tasked with analyzing employee salaries.
+Your manager is keen on understanding the pay distribution and asks you to determine the second highest salary among all employees.
+
+It's possible that multiple employees may share the same second highest salary. In case of duplicate, display the salary only once.
+
+Link:https://datalemur.com/questions/sql-second-highest-salary
+
+Discussion:
+
+step1: Find the dense_rank of who salary is more out of the all the user.
+step2: filter the rnk whose rnk is 2 , to find the second highest salary
+step3: add the distinct to return only unique value.
+
+Solution:
+
+select distinct salary from (
+SELECT salary,
+dense_rank() over(order by salary desc) as rnk 
+FROM employee) tgt 
+where rnk=2;
